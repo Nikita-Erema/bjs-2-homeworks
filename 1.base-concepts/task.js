@@ -10,23 +10,21 @@ function solveEquation(a, b, c) {
     return arr;
   }
   else if (dis > 0) {
-    x = (-b + Math.sqrt(dis) )/(2*a);
-    arr.push(x);
-    x = (-b - Math.sqrt(dis) )/(2*a);
-    arr.push(x);
+    arr.push((-b + Math.sqrt(dis) )/(2*a));
+    arr.push((-b - Math.sqrt(dis) )/(2*a));
     return arr;
   }
   else if (dis < 0){
     return arr;
   }
-  console.log(arr);
 }
 solveEquation(1,-3,2);
 
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
-  let P = (percent * 12 / 100);
+  let P = (percent / 100) / 12;
   let S = amount - contribution;
   let payment = S * (P + (P / ((Math.pow(1 + P, countMonths)) - 1)));
+  payment *= countMonths
   payment = Number(payment.toFixed(2));
   return payment;
 }
