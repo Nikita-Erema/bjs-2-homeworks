@@ -6,24 +6,24 @@ function Student(name, gender, age) {
 }
 
 Student.prototype.setSubject = function (subjectName) {
-   this.setSubject = subjectName;
+   this.subject = subjectName;
 }
 
 Student.prototype.addMarks = function (...marks) {
-    if ("marks" in this === false) {return 0;}
-    this.marks = marks;
+    if ("excluded" in this) {return 0;}
+    this.marks.push(...marks);
 }
 
 Student.prototype.getAverage = function () {
     if ("marks" in this === false || this.marks.length === 0) {return 0;}
     let summ = this.marks.reduce((acum, elem) => acum += elem, 0);
     return summ / this.marks.length;
-    }
+}
 
 Student.prototype.exclude = function (reason) {
-  delete this.marks;
-  delete this.setSubject;
-  this.exclude = reason;
+    delete this.marks;
+    delete this.subject;
+    return this.excluded = reason;
 }
 
 let student1 =  new Student("Nikita", "male", 16);
