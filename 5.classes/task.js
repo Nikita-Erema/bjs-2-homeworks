@@ -4,23 +4,22 @@ class PrintEditionItem {
         this.releaseDate = releaseDate;
         this.pagesCount = pagesCount;
         this.type = null;
-        this.state = 100;
+        this._state = 100;
     }
     fix() {
         this.state *= 1.5;
-        this.State = this.state;
     }
-    set State(SetState) {
+    set state(SetState) {
         if (SetState < 0) {
             SetState = 0;
         }
         else if (SetState > 100) {
             SetState = 100;
         } 
-        return this.state = SetState;
+        return this._state = SetState;
     }
-    get State() {
-        return this.state;
+    get state() {
+        return this._state;
     }
 }
 class Magazine extends PrintEditionItem{
@@ -65,6 +64,24 @@ class Library {
         if (book.state > 30) {
             this.books.push(book);
         }
+    }
+    findBookBy(type, value) {
+        for(let i = 0; i < this.books.length; i++) {
+            if (this.books[i][type] === value) {
+                return this.books[i];
+            }
+        }
+        return null;
+    } 
+    giveBookByName(nameBook) {
+        for(let i = 0; i < this.books.length; i++) {
+            if (this.books[i].name === nameBook) {
+                let book = this.books[i];
+                this.books.splice(i,1);
+                return book;
+            }
+        }
+        return null;
     }
 }
 const library = new Library("Библиотека имени Ленина");
